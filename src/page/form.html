@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - HeartBeat</title>
+    
+    <!-- Polices & Icones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Styles Globaux (Identiques à l'accueil) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='red' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath transform='rotate(140 12 12)' d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") 2 2, auto;
+        }
+
+        body:active {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='red' stroke='red' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath transform='rotate(140 12 12)' d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") 2 2, auto;
+        }
+
+        /* --- Layout Split Screen --- */
+        .left-side {
+            flex: 1;
+            display: block;
+            position: relative;
+            height: 100vh;
+            background-color: #fff6f6;
+        }
+
+        .left-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gradient-fade {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);
+            pointer-events: none;
+        }
+
+        .right-side {
+            flex: 1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 8%;
+            background-color: #ffffff;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        /* --- Typographie --- */
+        .container h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ff2d37;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .container p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* --- Formulaire --- */
+        .formulaire {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .input-box {
+            width: calc(50% - 10px); /* 2 colonnes par défaut */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Pleine largeur pour les grands champs */
+        .input-box.full-width {
+            width: 100%;
+        }
+
+        .input-box label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #16181d;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Inputs, Selects & Textarea --- */
+        .input-box input[type="text"],
+        .input-box input[type="email"],
+        .input-box input[type="password"],
+        .input-box input[type="number"],
+        .input-box select,
+        .input-box textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #eee;
+            border-radius: 12px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fafafa;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-box input:focus,
+        .input-box select:focus,
+        .input-box textarea:focus {
+            border-color: #ff2d37;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(255, 45, 55, 0.05);
+        }
+
+        /* --- Radios (Genre) --- */
+        .genre {
+            display: flex;
+            gap: 24px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .genre label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            cursor: pointer;
+            text-transform: none;
+        }
+
+        .genre input[type="radio"] {
+            accent-color: #ff2d37;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* --- Zone Photo de Profil --- */
+        .photo-profil {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0;
+            gap: 10px;
+        }
+
+        .photo-profil label {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: #ffe4e2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(22, 24, 29, 0.05);
+        }
+
+        .photo-profil label:hover {
+            transform: scale(1.05);
+            background-color: #ffd5d2;
+        }
+
+        .photo-profil i {
+            font-size: 32px;
+            color: #ff2d37;
+        }
+
+        .photo-profil input[type="file"] {
+            display: none;
+        }
+
+        .photo-profil span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #777;
+        }
+
+        /* --- Bouton Soumettre --- */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            background-color: #ff2d37;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(255, 45, 55, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #e0222b;
+            transform: translateY(-2px);
+        }
+
+        /* --- Redirection Connexion --- */
+        .connexion {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .connexion a {
+            text-decoration: none;
+            color: #ff2d37;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .connexion a:hover {
+            color: #e0222b;
+            text-decoration: underline;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .left-side {
+                display: none; /* Cache l'image sur tablette et mobile */
+            }
+            .right-side {
+                flex: 1;
+                padding: 40px 24px;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .input-box {
+                width: 100%; /* Tout passe sur une seule colonne */
+            }
+            .container h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Partie gauche : Image illustrative -->
+    <div class="left-side">
+        <img src="../../assets/img/amouerux.jpg" alt="Eva Match">
+        <div class="gradient-fade"></div>
+    </div>
+        
+    <!-- Partie droite : Formulaire d'inscription -->
+    <div class="right-side">
+        <div class="container">
+            <h1>💕 Recherchez votre âme sœur</h1>
+            <p>Créez votre profil en quelques instants et provoquez la chance.</p>
+
+            <form class="formulaire">
+
+                <!-- Avatar Upload standardisé -->
+                <div class="photo-profil">
+                    <label for="photo">
+                        <i class="fa-solid fa-camera"></i>
+                    </label>
+                    <span>Ajouter une photo</span>
+                    <input type="file" id="photo" accept="image/*">
+                </div>
+
+                <div class="input-box">
+                    <label>Nom</label>
+                    <input type="text" placeholder="Entrer votre nom" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Prénom</label>
+                    <input type="text" placeholder="Entrer votre prénom" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Email</label>
+                    <input type="email" placeholder="Entrer votre email" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Mot de passe</label>
+                    <input type="password" placeholder="Créer un mot de passe" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Âge</label>
+                    <input type="number" placeholder="Votre âge" min="18" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Genre</label>
+                    <div class="genre">
+                        <label><input type="radio" name="genre" value="homme" checked> Homme</label>
+                        <label><input type="radio" name="genre" value="femme"> Femme</label>
+                    </div>
+                </div>
+
+                <div class="input-box full-width">
+                    <label>Je recherche</label>
+                    <select>
+                        <option>Une femme</option>
+                        <option>Un homme</option>
+                        <option>Peu importe</option>
+                    </select>
+                </div>
+
+                <div class="input-box full-width">
+                    <label>À propos de vous</label>
+                    <textarea rows="3" placeholder="Décrivez votre personnalité, vos passions..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">Créer mon compte</button>
+
+                <div class="connexion">
+                    Déjà inscrit ? <a href="#">Se connecter</a>
+                </div>
+               
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
