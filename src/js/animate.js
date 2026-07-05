@@ -1,5 +1,5 @@
 (function () {
-    const DURATION = 1000;
+    const DURATION = 600;
     const EXIT_SELECTOR = 'a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"])';
 
     function sameOrigin(url) {
