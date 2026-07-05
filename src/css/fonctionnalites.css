@@ -1,0 +1,56 @@
+@import url("./animation.css");
+@import url("./global.css");
+
+body {
+    background: #fffafc;
+}
+
+.features-page {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 24px 8% 72px;
+}
+
+.page-hero {
+    background: linear-gradient(135deg, rgba(255, 45, 55, 0.08), rgba(255, 255, 255, 1));
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 34px;
+    margin-bottom: 28px;
+}
+
+.feature-panels {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.feature-panel {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.feature-panel h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.feature-panel p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.feature-list {
+    margin-top: 12px;
+    padding-left: 18px;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+    .feature-panels {
+        grid-template-columns: 1fr;
+    }
+}
