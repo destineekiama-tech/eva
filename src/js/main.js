@@ -3,9 +3,20 @@ const ouvrirBtn = document.getElementById("ouvrirDialog");
 const fermerBtn = document.getElementById("fermerDialog");
 
 ouvrirBtn.addEventListener("click", () => {
-    dialog.showModal(); // Rend la boîte modale (le reste de la page devient inerte)
+    if (dialog.open) {
+        dialog.close();
+        return;
+    }
+
+    dialog.showModal();
 });
 
 fermerBtn.addEventListener("click", () => {
-    dialog.close(); // Ferme la boîte
+    dialog.close();
+});
+
+dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+        dialog.close();
+    }
 });
