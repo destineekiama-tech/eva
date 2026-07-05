@@ -111,13 +111,14 @@ dialog p {
 dialog button {
     border: none;
     background: transparent;
-    color: var(--text);
+    color: var(--band);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    margin-left: auto;
+    margin-right: auto;
+    outline: none;
 }
 
 dialog button svg {
